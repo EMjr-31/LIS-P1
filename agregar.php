@@ -1,6 +1,5 @@
 <?php
     validarCodigo($_POST['codigo']);
-    existenciaCodigo($_POST['codigo']);
     
         /*
         if(isset($_FILES['file'])){
@@ -36,13 +35,15 @@
             echo "no hay nada";
         }*/
 
+    /*Funcion para validar el formato del codigo */
     function validarCodigo($codigo){
         if(preg_match("/^(PROD)\d{5}$/",$codigo)){
-            echo "Coincide";
+            existenciaCodigo($codigo);
         }else{
-            echo "No coincide";
+            error("El codigo no coincide con el formato");
         }
     }
+        /*Funcion para buscar si el codigo del producto exsite */
     function existenciaCodigo($codigo){
         $productos=simplexml_load_file("productos.xml");
         $i=0;
@@ -58,9 +59,23 @@
         }
         /*Si el producto fue encontrado lo guardamos en el objeto*/
         if($index>=0){
-            echo "ya existe el codigo";
+            error("Ya existe el codigo");
         }else{
-            echo "no existe";
+            error("El codigo no existe");
         }
+    }
+    /*Funcion para validar numeros */
+    function validarNumero($num){
+        if($num>0){
+            error("Numero valido ");
+        }else{
+            error("numero no valido");
+        }
+
+    }
+    /*Funcion de error*/
+    function error($cadena){
+        echo "<script language=JavaScript>alert('$cadena.');</script>";
+        
     }
 ?>
