@@ -59,24 +59,28 @@
                 <div class="modal_contenedor__img">
                     <img src="" alt="prodc" id="modal__img">
                 </div>
-                <form class="desc_modal" action="agregar.php" method="POST" enctype="multipart/form-data">
+                <form class="desc_modal" action="" method="POST" enctype="multipart/form-data" id="desc_modal_from">
                     <a href="" class="btn__cerrar" id="btn__cerrar" onclick="event.preventDefault();"><span class="material-symbols-outlined">close</span></a>
                     <label  for="modal__input__codigo" class="label">Codigo</label>
                     <input type="text" name="codigo" id="modal__input__codigo" class="label input" required>
                     <label for="modal__input__nombre" class="label">Nombre</label> 
                     <input type="text" name="nombre" id="modal__input__nombre" class="label input" required>
                     <label for="modal__input__categoria" class="label">Categoria</label>
-                    <input type="text" name="categoria" id="modal__input__categoria" class="label input" required>
+                    <select type="text" name="categoria" id="modal__input__categoria" class="label input" required>
+                        <option value="Textil">Textil</option>
+                        <option value="Promocional">Promocional</option>
+                        <option value="Tazas">Tazas</option>
+                        <option value="Embases">Embases</option>
+                    </select>
                     <label for="modal__input__descripcion" class="label">Descripcion</label>
                     <input type="text" name="descripcion" id="modal__input__descripcion" class="label input" required>
                     <label for="modal__input__existencia" class="label">Existencias</label>
-                    <input type="text" name="existencias" id="modal__input__existencia" class="label input" required>
+                    <input type="number" name="existencias" id="modal__input__existencia" class="label input" min="1" value="1" required >
                     <label for="modal__input__precio" class="label">Precio</label class="label">
-                    <input type="text" name="precio" id="modal__input__precio" class="label input">
+                    <input step="0.01" type="number" min="0.1" name="precio" id="modal__input__precio" class="label input">
                     <input type="file" name="file" accept="image/png, .jpg" class="form__btn" id="btn__subir">
-                    <input type="submit" value="Guardar" class="form__btn" id="btn__guardar">
+                    <input type="submit" value="Guardar" class="form__btn" id="btn__guardar" name="btn">
                 </form>
-
             </div>
         </div>
     </div>

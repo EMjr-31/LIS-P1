@@ -1,46 +1,51 @@
 <?php
-    validarCodigo($_POST['codigo']);
-    
-        /*
+ if(isset($_POST['btn'])){
+    if(validarCodigo($_POST['codigo']) && existenciaCodigo($_POST['codigo']) && validarNumero($_POST['existencias']) && validarNumero(validarNumero($_POST['precio']))){
         if(isset($_FILES['file'])){
             $archivo=$_FILES['file'];
             $archivo_nombre=$archivo['name'];
             $archivo_tipo=$archivo['type'];
             $ext= explode('.',$archivo_nombre);
             $tipos=array("image/jpg","image/png");
-    
+            var_dump($archivo_tipo);
             if(!in_array($archivo_tipo,$tipos)){
-                echo "No se permite ese formato de imagen";
+                error("No se permite ese formato de imagen o La imagen del producto no se subio");
+            }else{
+                 //directorio 
+                if(!is_dir("img")){
+                    mkdir("img", 8777);
+                }
+                //mover archivo
+                $nuevo_nombre=trim($_POST['codigo']).'.'.$ext[1];
+                move_uploaded_file($archivo['tmp_name'], 'img/'.$nuevo_nombre);
+                //agregar
+                $productos=simplexml_load_file("productos.xml");
+                $producto=$productos->addChild('producto');
+                $producto->addChild('codigo',$_POST['codigo']);
+                $producto->addChild('nombre',$_POST['nombre']);
+                $producto->addChild('descripcion',$_POST['descripcion']);
+                $producto->addChild('img',$nuevo_nombre);
+                $producto->addChild('categoria',$_POST['categoria']);
+                $producto->addChild('precio',$_POST['precio']);
+                $producto->addChild('existencias',$_POST['existencias']);
+                file_put_contents("productos.xml",$productos->asXML());
+                header('location:admin.php');
             }
-            //directorio 
-            if(!is_dir("img")){
-                mkdir("img", 8777);
-            }
-            //mover archivo
-            $nuevo_nombre=trim($_POST['codigo']).'.'.$ext[1];
-            move_uploaded_file($archivo['tmp_name'], 'img/'.$nuevo_nombre);
-            //agregar
-            
-            $producto=$productos->addChild('producto');
-            $producto->addChild('codigo',$_POST['codigo']);
-            $producto->addChild('nombre',$_POST['nombre']);
-            $producto->addChild('descripcion',$_POST['descripcion']);
-            $producto->addChild('img',$nuevo_nombre);
-            $producto->addChild('categoria',$_POST['categoria']);
-            $producto->addChild('precio',$_POST['precio']);
-            $producto->addChild('existencias',$_POST['existencias']);
-           
-            file_put_contents("productos.xml",$productos->asXML());
         }else{
-            echo "no hay nada";
-        }*/
+            error("La imagen del producto no se subio");
+        }
+    }
 
+ }else{
+    error("Formularrio no completado");
+ }
     /*Funcion para validar el formato del codigo */
     function validarCodigo($codigo){
         if(preg_match("/^(PROD)\d{5}$/",$codigo)){
-            existenciaCodigo($codigo);
+            return true;
         }else{
             error("El codigo no coincide con el formato");
+            return false;
         }
     }
         /*Funcion para buscar si el codigo del producto exsite */
@@ -60,22 +65,22 @@
         /*Si el producto fue encontrado lo guardamos en el objeto*/
         if($index>=0){
             error("Ya existe el codigo");
+            return false;
         }else{
-            error("El codigo no existe");
+            return true;
         }
     }
     /*Funcion para validar numeros */
     function validarNumero($num){
         if($num>0){
-            error("Numero valido ");
+            return true;
         }else{
-            error("numero no valido");
+            return false;
         }
 
     }
     /*Funcion de error*/
     function error($cadena){
         echo "<script language=JavaScript>alert('$cadena.');</script>";
-        
     }
 ?>

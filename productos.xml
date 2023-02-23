@@ -144,4 +144,4 @@
         <precio>5.50</precio>
         <existencias>500</existencias>
     </producto>                          
-</productos>
+<producto><codigo>PROD00018</codigo><nombre>Afiches</nombre><descripcion>Afiches personalizados</descripcion><img>PROD00018.png</img><categoria>Textil</categoria><precio>1</precio><existencias>1</existencias></producto><producto><codigo>PROD00017</codigo><nombre>Tazas</nombre><descripcion>bonita</descripcion><img>PROD00017.png</img><categoria>Tazas</categoria><precio>5.60</precio><existencias>1</existencias></producto><producto><codigo>PROD00021</codigo><nombre>Stickers Batman</nombre><descripcion>a</descripcion><img>PROD00021.png</img><categoria>Textil</categoria><precio>3.5</precio><existencias>5</existencias></producto></productos>

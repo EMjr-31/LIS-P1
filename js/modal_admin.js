@@ -11,23 +11,42 @@ function abrir(elemento){
         var tipobtn= btn.getAttribute("data-btn");
         switch (tipobtn) {
             case "agregar": 
-                imgDefecto();
-            break;
-            case "modificar": console.log("M");
+                agregar();
+            break;               
+            case "modificar": 
+                editar(elemento);            
             break;
             case "eliminar": console.log("E");
             break;
         }
         ;
         /*
-        $.post('./busqueda.php',{cod:codigo},
+        
+        */
+    }
+}
+
+/*funcion para agregar */
+function agregar(){
+    imgDefecto();
+    document.getElementById('desc_modal_from').setAttribute("action","agregar.php");
+    document.getElementById('btn__guardar').setAttribute("value","Guardar");
+    document.getElementById('btn__subir').classList.remove("articulos__filtro");
+    document.getElementById('modal__input__codigo').removeAttribute("readonly");
+}
+/*funcion para editar*/
+function editar(elemento){
+    var codigo=((elemento.parentNode).parentNode).getAttribute("id");
+    document.getElementById('desc_modal_from').setAttribute("action","editar.php");
+    document.getElementById('btn__guardar').setAttribute("value","Guardar Cambios");
+    document.getElementById('btn__subir').classList.add("articulos__filtro");
+    document.getElementById('modal__input__codigo').setAttribute("readonly","");
+    $.post('./busqueda.php',{cod:codigo},
         function(datos, estado){
             cargarProducto(datos);
             //console.log(estado);
         }
         );
-        */
-    }
 }
 /*Funcion para mostrar el productos a seleccionar*/
 function cargarProducto(datos){
@@ -35,21 +54,15 @@ function cargarProducto(datos){
     let prod=JSON.parse(datos);
     /*cargamos la informacion*/
     document.getElementById('modal__img').src="img/"+prod["img"];
-    document.getElementById('modal__nombre').innerHTML=prod["nombre"];
-    document.getElementById('modal__cat').innerHTML="<b>Categoria: </b>"+prod["categoria"];
-    document.getElementById('modal__desc').innerHTML="<b>Descripcion: </b>"+prod["descripcion"];
-    document.getElementById('modal__prec').innerHTML="<b>Precio: </b>$"+prod["precio"];
-    if(prod["existencias"]>0){
-        document.getElementById('modal__exis').innerHTML="<b>En existencia: </b>"+prod["existencias"]+" unidades";
-        document.getElementById('modal__exis').style.color="black";
-    }else{
-        document.getElementById('modal__exis').innerHTML="<b>Producto no disponible</b>";
-        document.getElementById('modal__exis').style.color="#FE8484";
-    }
-   
+    document.getElementById('modal__input__codigo').setAttribute("value",prod["codigo"]);
+    document.getElementById('modal__input__nombre').setAttribute("value",prod["nombre"]);
+    document.getElementById('modal__input__categoria').setAttribute("value",prod["categoria"]);
+    document.getElementById('modal__input__descripcion').setAttribute("value",prod["descripcion"]);
+    document.getElementById('modal__input__existencia').setAttribute("value",prod["existencias"]);
+    document.getElementById('modal__input__precio').setAttribute("value",prod["precio"]);
 }
-/* Cargar imagen*/
 
+/* Cargar imagen*/
 function imgDefecto(){
     document.getElementById('modal__img').src="img/subir_img.jpg";
 }
