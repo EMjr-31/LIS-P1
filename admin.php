@@ -62,7 +62,7 @@
                 <form class="desc_modal" action="agregar.php" method="POST" enctype="multipart/form-data">
                     <a href="" class="btn__cerrar" id="btn__cerrar" onclick="event.preventDefault();"><span class="material-symbols-outlined">close</span></a>
                     <label  for="modal__input__codigo" class="label">Codigo</label>
-                    <input type="text" name="cod" id="modal__input__codigo" class="label input" required>
+                    <input type="text" name="codigo" id="modal__input__codigo" class="label input" required>
                     <label for="modal__input__nombre" class="label">Nombre</label> 
                     <input type="text" name="nombre" id="modal__input__nombre" class="label input" required>
                     <label for="modal__input__categoria" class="label">Categoria</label>
@@ -70,7 +70,7 @@
                     <label for="modal__input__descripcion" class="label">Descripcion</label>
                     <input type="text" name="descripcion" id="modal__input__descripcion" class="label input" required>
                     <label for="modal__input__existencia" class="label">Existencias</label>
-                    <input type="text" name="existencia" id="modal__input__existencia" class="label input" required>
+                    <input type="text" name="existencias" id="modal__input__existencia" class="label input" required>
                     <label for="modal__input__precio" class="label">Precio</label class="label">
                     <input type="text" name="precio" id="modal__input__precio" class="label input">
                     <input type="file" name="file" accept="image/png, .jpg" class="form__btn" id="btn__subir">
