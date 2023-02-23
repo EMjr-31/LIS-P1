@@ -59,6 +59,7 @@
     </div>
     <footer>
         <p>Eduardo Martinez - MC190242</p>
+        <a href="admin.php"><span class="material-symbols-outlined">admin_panel_settings</span></a>
     </footer>
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -61,6 +61,7 @@
                 </div>
                 <form class="desc_modal" action="" method="POST" enctype="multipart/form-data" id="desc_modal_from">
                     <a href="" class="btn__cerrar" id="btn__cerrar" onclick="event.preventDefault();"><span class="material-symbols-outlined">close</span></a>
+                    <h3 id="pregunta"></h3>
                     <label  for="modal__input__codigo" class="label">Codigo</label>
                     <input type="text" name="codigo" id="modal__input__codigo" class="label input" required>
                     <label for="modal__input__nombre" class="label">Nombre</label> 
@@ -85,7 +86,8 @@
         </div>
     </div>
     <footer>
-        <p>Eduardo Martinez - MC190242</p>
+    <p>Eduardo Martinez - MC190242</p>
+        <a href="index.php"><span class="material-symbols-outlined">local_mall</span></a>
     </footer>
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

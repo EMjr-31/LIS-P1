@@ -9,15 +9,7 @@
         <precio>2.50</precio>
         <existencias>500</existencias>
     </producto>
-    <producto>
-        <codigo>PROD00002</codigo>
-        <nombre>Camiseta cuello V</nombre>
-        <descripcion>Camiseta Mod. 2, elaborada en algod&#xF3;n de 200 grs. cuello en V decorado, manga corta, costuras en cierres laterales.</descripcion>
-        <img>PROD00002.jpg</img>
-        <categoria>Textil</categoria>
-        <precio>2.90</precio>
-        <existencias>462</existencias>
-    </producto>
+    
     <producto>
         <codigo>PROD00003</codigo>
         <nombre>Sudadera algod&#xF3;n</nombre>
@@ -144,4 +136,4 @@
         <precio>5.50</precio>
         <existencias>500</existencias>
     </producto>                          
-<producto><codigo>PROD00018</codigo><nombre>Afiches</nombre><descripcion>Afiches personalizados</descripcion><img>PROD00018.png</img><categoria>Textil</categoria><precio>1</precio><existencias>1</existencias></producto><producto><codigo>PROD00017</codigo><nombre>Tazas</nombre><descripcion>bonita</descripcion><img>PROD00017.png</img><categoria>Tazas</categoria><precio>5.60</precio><existencias>1</existencias></producto><producto><codigo>PROD00021</codigo><nombre>Stickers Batman</nombre><descripcion>a</descripcion><img>PROD00021.png</img><categoria>Textil</categoria><precio>3.5</precio><existencias>5</existencias></producto></productos>
+</productos>

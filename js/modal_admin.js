@@ -17,6 +17,7 @@ function abrir(elemento){
                 editar(elemento);            
             break;
             case "eliminar": console.log("E");
+                eliminar(elemento); 
             break;
         }
         ;
@@ -28,6 +29,10 @@ function abrir(elemento){
 
 /*funcion para agregar */
 function agregar(){
+    var labels= document.querySelectorAll('.label');
+    labels.forEach(function(label){
+        label.classList.remove("articulos__filtro");
+    });
     imgDefecto();
     document.getElementById('desc_modal_from').setAttribute("action","agregar.php");
     document.getElementById('btn__guardar').setAttribute("value","Guardar");
@@ -36,6 +41,10 @@ function agregar(){
 }
 /*funcion para editar*/
 function editar(elemento){
+    var labels= document.querySelectorAll('.label');
+    labels.forEach(function(label){
+        label.classList.remove("articulos__filtro");
+    });
     var codigo=((elemento.parentNode).parentNode).getAttribute("id");
     document.getElementById('desc_modal_from').setAttribute("action","editar.php");
     document.getElementById('btn__guardar').setAttribute("value","Guardar Cambios");
@@ -47,6 +56,29 @@ function editar(elemento){
             //console.log(estado);
         }
         );
+}
+function eliminar(elemento){
+    document.getElementById('btn__subir').classList.add("articulos__filtro");
+    document.getElementById('btn__guardar').setAttribute("value","Eliminar");
+
+    var labels= document.querySelectorAll('.label');
+    labels.forEach(function(label){
+        label.classList.add("articulos__filtro");
+    });
+
+    var inputs= document.querySelectorAll('.input');
+    inputs.forEach(function(input){
+        input.setAttribute("required","");
+    });
+    
+    var codigo=((elemento.parentNode).parentNode).getAttribute("id");
+    document.getElementById('desc_modal_from').setAttribute("action","eliminar.php");
+    $.post('./busqueda.php',{cod:codigo},
+    function(datos, estado){
+        cargarProducto2(datos);
+        //console.log(estado);
+    }
+    );
 }
 /*Funcion para mostrar el productos a seleccionar*/
 function cargarProducto(datos){
@@ -60,6 +92,19 @@ function cargarProducto(datos){
     document.getElementById('modal__input__descripcion').setAttribute("value",prod["descripcion"]);
     document.getElementById('modal__input__existencia').setAttribute("value",prod["existencias"]);
     document.getElementById('modal__input__precio').setAttribute("value",prod["precio"]);
+}
+function cargarProducto2(datos){
+    /*Convertimos el JSON en un Objeto JS*/
+    let prod=JSON.parse(datos);
+    /*cargamos la informacion*/
+    document.getElementById('modal__img').src="img/"+prod["img"];
+    document.getElementById('modal__input__codigo').setAttribute("value",prod["codigo"]);
+    document.getElementById('modal__input__nombre').setAttribute("value",prod["nombre"]);
+    document.getElementById('modal__input__categoria').setAttribute("value",prod["categoria"]);
+    document.getElementById('modal__input__descripcion').setAttribute("value",prod["descripcion"]);
+    document.getElementById('modal__input__existencia').setAttribute("value",prod["existencias"]);
+    document.getElementById('modal__input__precio').setAttribute("value",prod["precio"]);
+    document.getElementById('pregunta').innerHTML="Esta seguro de eliminar el poducto \" "+prod["nombre"]+" \"?";
 }
 
 /* Cargar imagen*/
